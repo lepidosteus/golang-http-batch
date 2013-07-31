@@ -47,6 +47,10 @@ func New() (*batch) {
 	return &batch{concurrentDefault, []*entry{}}
 }
 
+func (b *batch) Clear() {
+	b.pool = b.pool[0:0]
+}
+
 func (b *batch) Run() {
 	// create and fill our working queue
 	queue := make(chan *entry, len(b.pool))
